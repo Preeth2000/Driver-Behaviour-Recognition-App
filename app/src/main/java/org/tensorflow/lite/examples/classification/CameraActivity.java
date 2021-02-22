@@ -106,7 +106,7 @@ public abstract class CameraActivity extends AppCompatActivity
   private Model model = Model.FLOAT;
   private Device device = Device.CPU;
   private int numThreads = -1;
-   MediaPlayer mp,mp1,mp2;
+   MediaPlayer mp;
   @Override
   protected void onCreate(final Bundle savedInstanceState) {
     LOGGER.d("onCreate " + this);
@@ -343,23 +343,9 @@ public abstract class CameraActivity extends AppCompatActivity
     handlerThread.start();
     handler = new Handler(handlerThread.getLooper());
 
-    mp = MediaPlayer.create(this, R.raw.hun);
-    mp1 = MediaPlayer.create(this, R.raw.ten);
-    mp2 = MediaPlayer.create(this, R.raw.five);
+    mp = MediaPlayer.create(this, R.raw.beep);
 
  /*   mp.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-      @Override
-      public void onCompletion(MediaPlayer mp) {
-        mp.release();
-      }
-    });
-    mp1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-      @Override
-      public void onCompletion(MediaPlayer mp) {
-        mp.release();
-      }
-    });
-    mp2.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
       @Override
       public void onCompletion(MediaPlayer mp) {
         mp.release();
@@ -481,7 +467,7 @@ public abstract class CameraActivity extends AppCompatActivity
                 || isHardwareLevelSupported(
                     characteristics, CameraCharacteristics.INFO_SUPPORTED_HARDWARE_LEVEL_FULL);
         LOGGER.i("Camera API lv2?: %s", useCamera2API);
-        return cameraId;
+        return "1";
       }
     } catch (CameraAccessException e) {
       LOGGER.e(e, "Not allowed to access camera");
@@ -550,36 +536,22 @@ public abstract class CameraActivity extends AppCompatActivity
         return 0;
     }
   }
-boolean hun = false;
-  boolean five = false;
-  boolean ten = false;
+boolean beep = false;
   @UiThread
   protected void showResultsInBottomSheet(List<Recognition> results) {
 
     if (results != null && results.size() >= 3) {
       Recognition recognition = results.get(0);
+      if (recognition.getTitle() != null) recognitionTextView.setText(recognition.getTitle());
       if (recognition != null) {
-        if (recognition.getTitle() != null) recognitionTextView.setText(recognition.getTitle());
         if (recognition.getConfidence() != null)
           recognitionValueTextView.setText(
-                  String.format("%.2f", (100 * recognition.getConfidence())) + "%");
-        float confi = 100 * recognition.getConfidence();
+                  String.format("%.2f", (10000 * recognition.getConfidence())) + "%");
+        float confi = 10000 * recognition.getConfidence();
         try {
-          if (!five && recognitionTextView.getText().toString().equalsIgnoreCase("500") && confi>99 ) {
-            mp2.start();
-            five =true;
-            ten = false;
-            hun = false;
-          } else if (!hun&& recognitionTextView.getText().toString().equalsIgnoreCase("100")&& confi>99) {
+          if (!beep && confi>99) {
             mp.start();
-            hun = true;
-            five =false;
-            ten = false;
-          } else if (!ten&&recognitionTextView.getText().toString().equalsIgnoreCase("10")&& confi>90 ) {
-            mp1.start();
-            ten  =true;
-            five =false;
-            hun = false;
+            //beep =true;
           }
         }catch (Exception e){
           e.printStackTrace();
@@ -591,7 +563,7 @@ boolean hun = false;
         if (recognition1.getTitle() != null) recognition1TextView.setText(recognition1.getTitle());
         if (recognition1.getConfidence() != null)
           recognition1ValueTextView.setText(
-              String.format("%.2f", (100 * recognition1.getConfidence())) + "%");
+              String.format("%.2f", (10000 * recognition1.getConfidence())) + "%");
       }
 
       Recognition recognition2 = results.get(2);
@@ -599,7 +571,7 @@ boolean hun = false;
         if (recognition2.getTitle() != null) recognition2TextView.setText(recognition2.getTitle());
         if (recognition2.getConfidence() != null)
           recognition2ValueTextView.setText(
-              String.format("%.2f", (100 * recognition2.getConfidence())) + "%");
+              String.format("%.2f", (10000 * recognition2.getConfidence())) + "%");
       }
     }
   }

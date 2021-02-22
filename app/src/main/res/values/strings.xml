@@ -17,6 +17,10 @@
     </string-array>
 
     <string name="device">Device:</string>
+
+    <string name="description">Welcome to the Driver behaviour Recognition App. \nTo use the app, place your phone in the car such that your front facing camera can identify you as you drive.</string>
+    <string name="description2">If any signs of unsafe driving is detected, the app will alert you using a quick non-invasive sound.</string>
+
     <string-array name="devices">
         <item>CPU</item>
         <item>GPU</item>

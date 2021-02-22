@@ -316,6 +316,7 @@ public class CameraConnectionFragment extends Fragment {
     this.cameraId = cameraId;
   }
 
+
   /** Sets up member variables related to camera. */
   private void setUpCameraOutputs() {
     final Activity activity = getActivity();

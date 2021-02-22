@@ -15,7 +15,7 @@
     <LinearLayout
         android:id="@+id/gesture_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="225dp"
         android:orientation="vertical"
         android:paddingTop="10dp"
         android:paddingBottom="10dp">
@@ -97,11 +97,19 @@
 
         </LinearLayout>
 
-        <View
+        <TextView
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/darker_gray" />
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:text="@string/description" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="67dp"
+            android:text="@string/description2" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -224,12 +232,6 @@
             android:textColor="@android:color/black" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/darker_gray" />
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -276,12 +278,6 @@
 
         </LinearLayout>
     </RelativeLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/darker_gray" />
 
     <RelativeLayout
         android:layout_width="match_parent"
