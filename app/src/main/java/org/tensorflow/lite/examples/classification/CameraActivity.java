@@ -546,12 +546,12 @@ boolean beep = false;
       if (recognition != null) {
         if (recognition.getConfidence() != null)
           recognitionValueTextView.setText(
-                  String.format("%.2f", (10000 * recognition.getConfidence())) + "%");
-        float confi = 10000 * recognition.getConfidence();
+                  String.format("%.2f", (25000 * recognition.getConfidence())) + "%");
+        float confi = 25000 * recognition.getConfidence();
         try {
           if (!beep && confi>99) {
             mp.start();
-            //beep =true;
+            beep =true;
           }
         }catch (Exception e){
           e.printStackTrace();
@@ -563,7 +563,7 @@ boolean beep = false;
         if (recognition1.getTitle() != null) recognition1TextView.setText(recognition1.getTitle());
         if (recognition1.getConfidence() != null)
           recognition1ValueTextView.setText(
-              String.format("%.2f", (10000 * recognition1.getConfidence())) + "%");
+              String.format("%.2f", (25000 * recognition1.getConfidence())) + "%");
       }
 
       Recognition recognition2 = results.get(2);
@@ -571,7 +571,7 @@ boolean beep = false;
         if (recognition2.getTitle() != null) recognition2TextView.setText(recognition2.getTitle());
         if (recognition2.getConfidence() != null)
           recognition2ValueTextView.setText(
-              String.format("%.2f", (10000 * recognition2.getConfidence())) + "%");
+              String.format("%.2f", (25000 * recognition2.getConfidence())) + "%");
       }
     }
   }
